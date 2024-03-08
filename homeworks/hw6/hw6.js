@@ -149,23 +149,58 @@ console.log(coursesAndDurationArray.map((value, index) => {
 // }
 
 
-let deck = [
-    { cardSuit: 'spade', value: 'ace', color: 'black' },
+let suits = ['spade', 'diamond', 'heart', 'clubs'];
+let values = ['6', '7', '8', '9', '10', 'jack', 'queen', 'king', 'ace'];
 
-    { cardSuit: 'spade', value: '6', color: 'black' },
-    { cardSuit: 'diamond', value: '6', color: 'red' },
-    { cardSuit: 'heart', value: '6', color: 'red' },
-    { cardSuit: 'clubs', value: '6', color: 'black' },
+let cards = [];
 
-    { cardSuit: 'diamond', value: '7', color: 'red' },
-    { cardSuit: 'heart', value: '7', color: 'red' },
+for (let suit of suits) {
+    for (let value of values) {
+        let color = (suit === 'heart' || suit === 'diamond') ? 'red' : 'black';
+        cards.push({ cardSuit: suit, value: value, color: color });
+    }
+}
 
-    { cardSuit: 'clubs', value: '7', color: 'black' },
+let spadeAce = cards.find(card => card.cardSuit === 'spade' && card.value === 'ace');
+console.log(spadeAce);
 
-    { cardSuit: 'diamond', value: '9', color: 'red' },
-    { cardSuit: 'spade', value: '10', color: 'black' },
+let sixes = cards.filter(card => card.value === '6');
+console.log(sixes);
 
-];
+let redCards = cards.filter(card => card.color === 'red');
+console.log(redCards);
+
+let diamonds = cards.filter(card => card.cardSuit === 'diamond');
+console.log(diamonds);
+
+let highValueClubs = cards.filter(card => card.cardSuit === 'clubs' && (card.value === '9' || card.value === '10' || card.value === 'jack' || card.value === 'queen' || card.value === 'king' || card.value === 'ace'));
+console.log(highValueClubs);
+
+
+// Взяти описану колоду карт, та за допомоги reduce упакувати всі карти по "мастях" в об'єкт
+// {
+//     spades:[],
+//         diamonds:[],
+//     hearts:[],
+//     clubs:[]
+// }
+
+
+let sortedCards = deck.reduce((acc, card) => {
+    if (card.cardSuit === "spade"){
+        acc.spade.push(card);
+    }else if (card.cardSuit === "diamond"){
+        acc.diamonds.push(card);
+    }else if (card.cardSuit === "heart"){
+        acc.hearts.push(card);
+    }else if (card.cardSuit === "clubs"){
+        acc.clubs.push(card);
+    }
+    return acc;
+},
+    {spade: [], diamonds: [], hearts: [], clubs: []});
+
+console.log(sortedCards);
 
 
 // Взяти описану колоду карт, та за допомоги reduce упакувати всі карти по "мастях" в об'єкт
