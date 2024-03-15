@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<!--створити блок,
+- додати йому класи wrap, collapse, alpha, beta
+- додати стилі(довільні значення) : колір фону, колір тексту, розмір тексту
+- додати цей блок в body.
+- клонувати його повністю, та додати клон в body.-->
+
+    <style>
+        .wrap{
+            color: white;
+            background-color: grey;
+            font-size: 18px;
+        }
+        .collapse{
+            font-weight: bold;
+        }
+        .alpha{
+            border-radius: 1px;
+        }
+        .beta{
+            border-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="wrap collapse alpha beta"></div>
+<script src="hw9.1.js"></script>
+
+
+<!--- Є масив:
+['Main','Products','About us','Contacts']
+Зробити ul в середині якої будуть лежати елементи масиву (кожен в своєму li)-->
+
+<ul id="list"></ul>
+<script src="hw9.2.js"></script>
+
+
+<!--    Для кожного елементу масиву зробити блок в якому вивести інформацію про title та monthDuration
+Завдання робити через цикли.-->
+
+
+<div id="courses"></div>
+<script src="hw9.3.js"></script>
+
+
+<!--За допомоги скріпта для кожного елементу масиву зробити <div class='item'> ,  в якому буде <h1 class='heading'>  з title  елементу, та <p class='description'> з monthDuration елементу.
+Завдання робити через цикли.-->
+
+
+<div id="courses1"></div>
+<script src="hw9.4.js"></script>
+
+
+<!--- є масив simpsons, котрий лежить в arrays.js (на цей момент ви вже знаєте де він знаходиться)
+Проітерувати його, створиши для кожного об'єкту  масиву <div class='member'> та наповнити його данними з об'єкту.
+Якщо людською мовою: під кожного члена родини зробити блок та наповнити його інформацією з цього об'єкту-->
+
+
+<div id="simpsons"></div>
+<script src="hw9.5.js"></script>
+
+
+<!--Цикл в циклі
+- Є масив coursesArray котрий лежить в arrays.js (на цей момент ви вже знаєте де він знаходиться)
+Створити для кожного елементу масиву свій блок, блок розділити блоками, в яких будуть зберігатись значення окремих властивостей, для властивості modules зробити список з елементами
+Приклад структири знаходиться у файлі example.png який лежить в папці з поточним фйлом-->
+
+
+<div id="courses2"></div>
+<script src="hw9.6.js"></script>
+</body>
+
+</html>
