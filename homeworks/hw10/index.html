@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Є сторінка index.html (назва довільна), при відвідуванні якої в локальне сховще, в масив sessions зберігається інформація про дату та час відвідування сторінки.-->
+
+<script>
+    let currentDate = new Date().toLocaleString();
+    let sessions = JSON.parse(localStorage.getItem('sessions')) || [];
+    sessions.push(currentDate);
+    localStorage.setItem('sessions', JSON.stringify(sessions));
+</script>
+</body>
+</html>

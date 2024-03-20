@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #text{
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+
+<!--Стоврити форму з трьома полями для name,sruname,age та кнопкою. При натисканні на кнопку зчитати данні з полів, та вивести об'єкт в документ.
+ Іншими словами : заповниои форму, натиснули кнопку, під формою з'явився блок з вашим об'єктом-->
+
+
+    <form id="form">
+        <input type="text" id="name">
+        <input type="text" id="surname">
+        <input type="text" id="age">
+        <button type="button" onclick="submitForm()">Надіслати</button>
+    </form>
+
+    <div id="output"></div>
+    <div id="number"></div>
+    <div id="objBox"></div>
+    <button id="prev">Попередні</button>
+    <button id="next">Наступні</button>
+    <div id="text"></div>
+    <button id="hide">Приховати</button>
+    <input type="number" id="ageInput">
+    <button id="send">Надіслати</button>
+<script>
+    function submitForm(){
+        let name = document.getElementById('name').value;
+        let surname = document.getElementById('surname').value;
+        let age = document.getElementById('age').value;
+
+        let obj = {
+            name: name,
+            surname: surname,
+            age: age
+        };
+        document.getElementById('output').innerText = JSON.stringify(obj);
+    }
+
+
+
+//є сторінка, на якій є блок, я кому знаходиьтся цифра. написати код, який при кожному перезавантажені сторінки буде додавати до неї +1
+    let currentValue = localStorage.getItem('value');
+
+    if (currentValue) {
+        currentValue = parseInt(currentValue) + 1;
+    } else {
+        currentValue = 1;
+    }
+    document.getElementById('number').innerText =  currentValue;
+    localStorage.setItem('value', currentValue.toString());
+
+
+//     зробити масив на 100 об'єктів та дві кнопки prev next
+//     при завантажені сторінки з'являються перші 10 об'єктів.
+//     При натисканні next виводяться настпні 10 об'єктів
+//     При натисканні prev виводяться попередні 10 об'єктів
+
+    let objects = [];
+    for (let i = 1; i <= 100; i++){
+        objects.push({ id: i });
+    }
+
+    let currentPage = 0;
+    let objPerPage = 10;
+
+    let objBox = document.getElementById('objBox');
+    let prev = document.getElementById('prev');
+    let next = document.getElementById('next');
+
+    function displayObjects() {
+        let start = currentPage * objPerPage;
+        let end = start + objPerPage;
+        let displayedObjects = objects.slice(start, end);
+
+        objBox.innerText = '';
+        displayedObjects.forEach(function (object){
+            let div = document.createElement('div');
+            div.textContent = object.id;
+            objBox.appendChild(div);
+        });
+
+        prev.disabled = currentPage === 0;
+        next.disabled = currentPage === Math.ceil(objects.length / objPerPage) - 1;
+    }
+
+    prev.addEventListener('click', function () {
+        if (currentPage > 0){
+            currentPage--;
+            displayObjects();
+        }
+    });
+
+    next.addEventListener('click', function (){
+        if (currentPage < Math.ceil(objects.length / objPerPage) - 1){
+            currentPage++;
+            displayObjects();
+        }
+    });
+
+    displayObjects();
+
+//     Створити довільний елемент з id = text та створити кнопку.Використовуючи JavaScript, зробіть так, щоб при натисканні на кнопку зникав елемент з id="text".
+
+    let text = document.getElementById('text');
+    let hide = document.getElementById('hide');
+
+    hide.addEventListener('click', function (){
+        text.style.display = 'none';
+    });
+
+
+    // створити інпут який приймає вік людини та кнопку яка підтверджує дію.
+    // При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача
+
+    document.getElementById('send').addEventListener("click", function (){
+        let age = document.getElementById('ageInput').value;
+
+        if (age < 18) {
+            alert('Ви повинні бути старше 18 років');
+        } else {
+            alert('Вік надіслано');
+        }
+    });
+</script>
+</body>
+</html>

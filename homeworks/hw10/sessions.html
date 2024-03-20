@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="sessionsBox"></div>
+
+<script>
+    let sessions =  JSON.parse(localStorage.getItem('sessions')) || [];
+    let sessionsBox = document.getElementById('sessionsBox');
+
+    sessions.forEach(function (session, index){
+        let sessionDiv = document.createElement('div');
+        sessionDiv.classList.add('session');
+        sessionDiv.innerText = 'Сесія ' + (index + 1) + ': ' + session;
+        sessionsBox.appendChild(sessionDiv);
+    })
+
+
+</script>
+</body>
+</html>
