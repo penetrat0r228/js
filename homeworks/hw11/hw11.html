@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Carts</title>
+</head>
+<body>
+<!--- взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.-->
+<script>
+    fetch('https://dummyjson.com/carts')
+        .then(value => value.json())
+        .then(data => {
+            data.carts.forEach(cart => {
+                document.write(`<p>Корзина №:${cart.id}</p>`);
+
+                cart.products.forEach(product => {
+                    document.write(`<p>Id: ${product.id}</p>`);
+                    document.write(`<p>Title: ${product.title}</p>`);
+                    document.write(`<p>Price: ${product.price}</p>`);
+                    document.write(`<p>Quantity: ${product.quantity}</p>`);
+                    document.write(`<p>Total: ${product.total}</p>`);
+                    document.write(`<p>Discount Percentage: ${product.discountPercentage}</p>`);
+                    document.write(`<p>Discounted Price: ${product.discountedPrice}</p>`);
+                    document.write(`<p>Thumbnail: <img src="${product.thumbnail}"></p>`);
+
+                })
+
+
+            })
+        })
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipes</title>
+</head>
+<body>
+    <script>
+        //     - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
+
+        fetch('https://dummyjson.com/recipes')
+            .then(value => value.json())
+            .then(res => {
+                res.recipes.forEach(recipe => {
+                    document.write(`<p> Рецепт №: ${recipe.id}</p>`);
+                    document.write(`<b>${recipe.name}</b>`);
+                    document.write(`<p> Інгредієнти: </p>`);
+                    document.write(`<ul>`);
+                    recipe.ingredients.forEach((ingredient) => {
+                        document.write(`<li> ${ingredient} </li>`);
+                    });
+                    document.write(`</ul>`);
+                    document.write(`<p>Спосіб приготування: ${recipe.instructions}</p>`);
+                    document.write(`<p>Час підготовки: ${recipe.prepTimeMinutes} хв</p>`);
+                    document.write(`<p>Час приготування: ${recipe.cookTimeMinutes} хв</p>`);
+                    document.write(`<p>Порції: ${recipe.servings} хв</p>`);
+                    document.write(`<p>Важкість: ${recipe.difficulty}</p>`);
+                    document.write(`<p>Кухня: ${recipe.cuisine}</p>`);
+                    document.write(`<p>Калорійність порції: ${recipe.caloriesPerServing}</p>`);
+                    document.write(`<p>Теги: ${recipe.tags}</p>`);
+                    document.write(`<p>Користувач: ${recipe.userId}</p>`);
+                    document.write(`<img src="${recipe.image}">` );
+                    document.write(`<p>Рейтинг: ${recipe.rating}</p>`);
+                    document.write(`<p>Переглядів: ${recipe.reviewCount}</p>`);
+                    document.write(`<p>Тип їжі: ${recipe.mealType}</p>`)
+                })
+
+            });
+    </script>
+</body>
+</html>
